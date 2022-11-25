@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple</title>
+</head>
+<body>
+<div style="max-width:1200px;margin: 0 auto">
+    <h2>Post</h2>
+    <form th:action="@{''}" th:object="${post}" method="post">
+        <p>
+            <label th:for="title">Title : </label>
+            <input type="text" th:field="*{title}"/>
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red"></span>
+        </p>
+        <div style="max-width:800px">
+            <textarea th:field="*{content}" rows="10" style="width:100%"></textarea>
+            <p style="text-align:right">
+                <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red"></span>
+                <br th:if="${#fields.hasErrors('content')}">
+                <input type="submit">
+            </p>
+        </div>
+    </form>
+    <p th:text="#{welcome}" style="font-size:x-large">#{welcome}</p>
+    <p th:if="${#fields.hasErrors('post.hidden')}" th:errors="*{post.hidden}" style="color:red">*{hidden}</p>
+</div>
+</body>
+</html>
